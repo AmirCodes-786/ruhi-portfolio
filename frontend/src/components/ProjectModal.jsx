@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import DevelopmentOverlay from './DevelopmentOverlay'
 
 const ProjectModal = ({ project, onClose }) => {
   const [developmentOpen, setDevelopmentOpen] = useState(false)
-  useEffect(() => setDevelopmentOpen(false), [project?.id])
   if (!project) return null
 
   return (

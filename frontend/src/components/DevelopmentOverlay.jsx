@@ -9,7 +9,7 @@ const DevelopmentOverlay = ({ project, open, onClose, onBack }) => (
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[90] overflow-hidden bg-[#0d0e0c] text-[#f4f1e8]"
       >
-        <motion.div animate={{ rotate: 360 }} transition={{ duration: 18, repeat: Infinity, ease: 'linear' }} className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#c8ff3d]/30" />
+        <motion.div animate={{ rotate: 360 }} transition={{ duration: 24, repeat: Infinity, ease: 'linear' }} className="absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#c8ff3d]/30" />
         <motion.div animate={{ scale: [1, 1.12, 1], opacity: [.35, .7, .35] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }} className="absolute bottom-[-12rem] left-[-8rem] h-96 w-96 rounded-full bg-[#7467f0]/30 blur-[80px]" />
         <div className="relative flex h-full flex-col items-center justify-center px-6 text-center">
           <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: .15 }} className="mb-8 flex items-center gap-3 rounded-full border border-white/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[.18em]"><span className="h-2 w-2 animate-pulse rounded-full bg-[#c8ff3d] shadow-[0_0_15px_#c8ff3d]" />Project in development</motion.div>

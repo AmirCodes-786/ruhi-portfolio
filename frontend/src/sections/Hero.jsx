@@ -1,18 +1,15 @@
 ﻿import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useStore } from '../store/store'
 
 const Hero = () => {
   const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, 180])
-
   const setActiveSection = useStore((state) => state.setActiveSection)
 
   return (
     <section id="hero" ref={ref} className="portfolio-section relative h-full overflow-y-auto pt-4">
       <div className="absolute inset-0 editorial-grid opacity-40" />
-      <motion.div style={{ y: titleY }} className="relative z-10 mx-auto flex min-h-[82svh] max-w-[1480px] flex-col justify-between px-5 sm:px-8 lg:px-12">
+      <motion.div className="relative z-10 mx-auto flex min-h-[82svh] max-w-[1480px] flex-col justify-between px-5 sm:px-8 lg:px-12">
         <div className="flex items-start justify-between pt-4">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }} className="flex items-center gap-3">
             <span className="h-2 w-2 rounded-full bg-[var(--lime)] shadow-[0_0_18px_var(--lime)]" />
@@ -39,7 +36,7 @@ const Hero = () => {
           </motion.p>
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setActiveSection('projects')} className="rounded-full bg-[var(--ink)] px-7 py-4 text-sm font-bold text-[var(--paper)] transition-transform hover:-translate-y-1">Explore work <span className="ml-3 text-[var(--lime)]">↘</span></button>
-            <button onClick={() => setActiveSection('contact')} className="pill px-7 py-4 text-sm font-bold transition-transform hover:-translate-y-1">Let's talk</button>
+            <button onClick={() => setActiveSection('contact')} className="pill px-7 py-4 text-sm font-bold transition-transform hover:-translate-y-1">Let&apos;s talk</button>
             <a href="/Jagriti-Kushwaha-Resume.pdf" target="_blank" rel="noopener noreferrer" className="pill px-7 py-4 text-sm font-bold transition-transform hover:-translate-y-1">View resume ↗</a>
           </div>
         </div>

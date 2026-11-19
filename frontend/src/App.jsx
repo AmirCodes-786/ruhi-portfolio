@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useStore } from './store/store'
 import Hero from './sections/Hero'
 import Navigation from './components/Navigation'
-import Skills from './sections/Skills'
-import Education from './sections/Education'
-import Experience from './sections/Experience'
-import Projects from './sections/Projects'
-import Contact from './sections/Contact'
-import About from './sections/About'
+const Skills = lazy(() => import('./sections/Skills'))
+const Education = lazy(() => import('./sections/Education'))
+const Experience = lazy(() => import('./sections/Experience'))
+const Projects = lazy(() => import('./sections/Projects'))
+const Contact = lazy(() => import('./sections/Contact'))
+const About = lazy(() => import('./sections/About'))
 import PremiumCursor from './components/PremiumCursor'
 
 function App() {
@@ -38,13 +38,15 @@ function App() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
-            initial={{ opacity: 0, y: 18, scale: 0.995 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.995 }}
-            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="h-full overflow-hidden"
           >
-            {sections[activeSection]}
+            <Suspense fallback={<div className="h-full" />}>
+              {sections[activeSection]}
+            </Suspense>
           </motion.div>
         </AnimatePresence>
       </main>

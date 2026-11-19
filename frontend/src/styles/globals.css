@@ -9,6 +9,28 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+img, svg, canvas, video {
+  display: block;
+  max-width: 100%;
+}
+
+button, a, input, textarea {
+  touch-action: manipulation;
+}
+
+.portfolio-section,
+.cursor-dot,
+.cursor-ring,
+[data-framer-motion] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 html {
@@ -382,6 +404,26 @@ html.light body {
 .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--ink); border-radius: 50%; z-index: 9998; pointer-events: none; transition: width .2s, height .2s, border-color .2s; }
 
 @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+@media (max-width: 1023px) {
+  .premium-noise { display: none; }
+  .editorial-grid { background-size: 48px 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot, .cursor-ring { display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.portfolio-section a,
+.portfolio-section button,
+.portfolio-section [role='button'] {
+  contain: layout paint;
+}
 
 .portfolio-section { scrollbar-width: thin; scrollbar-color: var(--lime) transparent; }
 .portfolio-section::-webkit-scrollbar { width: 6px; }
