@@ -40,7 +40,7 @@ const Education = () => {
 
             <motion.div initial={{ opacity: 0, y: 15 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ delay: .30 }} className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-white/12">
               {[['01', 'Secure by design'], ['02', 'Build to scale'], ['03', 'Learn continuously']].map(([number, label]) => (
-                <div key={number} className="bg-[#11120f] px-3 py-4 text-center"><span className="text-[9px] opacity-40">/{number}</span><strong className="mt-2 block text-[10px] uppercase tracking-[.08em] sm:text-xs">{label}</strong></div>
+                <div key={number} className="bg-[#11120f] px-3 py-4 text-center"><span className="text-[9px] text-white/75">/{number}</span><strong className="mt-2 block text-[10px] uppercase tracking-[.08em] sm:text-xs">{label}</strong></div>
               ))}
             </motion.div>
           </div>

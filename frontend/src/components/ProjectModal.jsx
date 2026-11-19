@@ -24,7 +24,7 @@ const ProjectModal = ({ project, onClose }) => {
           className="modal-scrollable relative max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-[2rem] border border-[var(--line)] bg-[var(--paper)] shadow-2xl"
         >
           <div className="sticky top-0 z-20 flex items-center justify-between border-b border-[var(--line)] bg-[var(--paper)]/90 px-5 py-4 backdrop-blur-xl sm:px-8">
-            <div className="flex items-center gap-3"><span className="rounded-full bg-[var(--ink)] px-3 py-2 text-[9px] font-bold tracking-[.14em] text-[var(--paper)]">CASE STUDY / 0{project.id}</span><span className="hidden text-[10px] font-bold uppercase tracking-[.14em] opacity-45 sm:block">{project.year}</span></div>
+            <div className="flex items-center gap-3"><span className="rounded-full bg-[var(--ink)] px-3 py-2 text-[9px] font-bold tracking-[.14em] text-[var(--paper)]">CASE STUDY / 0{project.id}</span><span className="hidden text-[10px] font-bold uppercase tracking-[.14em] text-[var(--ink)] opacity-80 sm:block">{project.year}</span></div>
             <button onClick={onClose} className="grid h-10 w-10 place-items-center rounded-full border border-[var(--line)] text-xl transition-transform hover:rotate-90" aria-label="Close case study">×</button>
           </div>
 
@@ -33,7 +33,7 @@ const ProjectModal = ({ project, onClose }) => {
               <div>
                 <p className="section-kicker mb-5">{project.category}</p>
                 <h2 className="display-font text-[clamp(3rem,7vw,6.5rem)] font-black leading-[.86]">{project.title}</h2>
-                <p className="mt-6 max-w-2xl text-base leading-7 opacity-65 sm:text-lg">{project.description}</p>
+                <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--ink)] opacity-85 sm:text-lg">{project.description}</p>
               </div>
               <div className="flex min-h-48 items-center justify-center overflow-hidden rounded-[1.5rem] bg-[var(--ink)] editorial-grid">
                 <span className="text-center text-5xl font-black tracking-tight text-[var(--lime)] sm:text-7xl">{project.thumbnail}</span>
@@ -42,7 +42,7 @@ const ProjectModal = ({ project, onClose }) => {
 
             <div className="mt-10 grid gap-px overflow-hidden rounded-2xl bg-[var(--line)] md:grid-cols-3">
               {[['Challenge', project.challenge], ['Approach', project.approach], ['Outcome', project.outcome]].map(([title, copy]) => (
-                <div key={title} className="bg-[var(--paper)] p-5 sm:p-6"><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[var(--violet)]">{title}</p><p className="mt-3 text-sm leading-6 opacity-60">{copy}</p></div>
+                <div key={title} className="bg-[var(--paper)] p-5 sm:p-6"><p className="text-[10px] font-bold uppercase tracking-[.16em] text-[var(--violet)]">{title}</p><p className="mt-3 text-sm leading-6 text-[var(--ink)] opacity-85">{copy}</p></div>
               ))}
             </div>
 
@@ -51,7 +51,7 @@ const ProjectModal = ({ project, onClose }) => {
                 <h3 className="text-xs font-bold uppercase tracking-[.16em]">Key capabilities</h3>
                 <div className="mt-5 grid gap-2 sm:grid-cols-2">
                   {project.features.map((feature, index) => (
-                    <div key={feature} className="flex gap-3 rounded-xl border border-[var(--line)] p-4 text-sm leading-6"><span className="text-[10px] font-bold opacity-40">0{index + 1}</span><span className="opacity-70">{feature}</span></div>
+                    <div key={feature} className="flex gap-3 rounded-xl border border-[var(--line)] p-4 text-sm leading-6"><span className="text-[10px] font-bold text-[var(--ink)] opacity-80">0{index + 1}</span><span className="text-[var(--ink)] opacity-85">{feature}</span></div>
                   ))}
                 </div>
               </div>

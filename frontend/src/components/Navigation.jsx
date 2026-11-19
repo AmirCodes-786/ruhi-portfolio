@@ -26,7 +26,7 @@ const Navigation = () => {
 
         <div className="hidden items-center gap-5 text-[10px] font-bold uppercase tracking-[0.12em] lg:flex xl:gap-7">
           {navItems.map(([label, id]) => (
-            <button key={`${label}-${id}`} onClick={() => goTo(id)} className={`relative py-2 transition-opacity ${activeSection === id ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>
+            <button key={`${label}-${id}`} onClick={() => goTo(id)} className={`relative py-2 transition-opacity ${activeSection === id ? 'opacity-100' : 'text-[var(--ink)] opacity-70 hover:opacity-100'}`}>
               {label}
               {activeSection === id && <motion.span layoutId="nav-dot" className="absolute bottom-0 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[var(--lime)]" />}
             </button>

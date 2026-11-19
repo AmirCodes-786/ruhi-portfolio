@@ -17,13 +17,13 @@ const About = () => (
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }}>
         <p className="section-kicker mb-4 lg:mb-7">About me</p>
         <h2 className="display-font text-[clamp(2.8rem,7vw,7rem)] font-black leading-[.86]">Curious mind.<br /><span className="outline-text">Clear purpose.</span></h2>
-        <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink)] opacity-75 sm:text-base lg:mt-8 lg:text-lg lg:leading-8">
+        <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--ink)] opacity-90 sm:text-base lg:mt-8 lg:text-lg lg:leading-8">
           I’m Jagriti Kushwaha, a BCA student specializing in cybersecurity and a full-stack developer. I build secure, AI-powered and cloud-based products while continually strengthening my engineering and problem-solving skills.
         </p>
         <div className="mt-5 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-[var(--line)] sm:grid-cols-3 lg:mt-8">
           {[['Based in', 'Jharkhand, India'], ['Focus', 'Full-stack & AI'], ['Education', 'BCA · 7.2 CGPA']].map(([label, value]) => (
             <div key={label} className="bg-[var(--paper)] px-4 py-3 lg:p-5">
-              <span className="block text-[9px] font-bold uppercase tracking-[.16em] text-[var(--ink)] opacity-55">{label}</span>
+              <span className="block text-[9px] font-bold uppercase tracking-[.16em] text-[var(--ink)] opacity-90">{label}</span>
               <strong className="mt-1 block text-sm text-[var(--ink)] lg:mt-2">{value}</strong>
             </div>
           ))}

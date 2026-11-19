@@ -15,7 +15,7 @@ const Projects = () => {
       <div className="mx-auto max-w-[1480px]">
         <div className="mb-8 flex items-end justify-between border-b border-[var(--line)] pb-5">
           <div><p className="section-kicker mb-7">Selected work</p><h2 className="display-font text-[clamp(3.2rem,8vw,7.5rem)] font-black leading-[.88]">Case studies<span className="text-[var(--lime)]">.</span></h2></div>
-          <span className="hidden text-xs font-bold uppercase tracking-[.16em] opacity-50 md:block">2026</span>
+          <span className="hidden text-xs font-bold uppercase tracking-[.16em] text-[var(--ink)] opacity-80 md:block">2026</span>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
@@ -28,7 +28,7 @@ const Projects = () => {
               </div>
               <div className="px-3 pb-4 pt-6">
                 <h3 className="mb-4 text-2xl font-bold tracking-tight lg:text-3xl">{project.title}</h3>
-                <p className="mb-5 max-w-md text-sm leading-6 text-[var(--ink)] opacity-75">{project.description}</p>
+                <p className="mb-5 max-w-md text-sm leading-6 text-[var(--ink)] opacity-85">{project.description}</p>
                 <button onClick={(event) => { event.stopPropagation(); setSelectedProject(project) }} className="mb-4 flex w-full items-center justify-between rounded-full bg-[var(--violet)] px-5 py-3.5 text-xs font-bold text-white shadow-[0_10px_30px_rgba(116,103,240,.22)] transition-transform group-hover:translate-y-[-2px]"><span>Open full case study</span><span className="grid h-7 w-7 place-items-center rounded-full bg-white/15">↗</span></button>
                 <div className="mb-5 flex flex-wrap gap-2">{project.techStack.slice(0, 3).map((tech) => <span key={tech} className="pill px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em]">{tech}</span>)}</div>
                 {project.liveStatus === 'live' ? (

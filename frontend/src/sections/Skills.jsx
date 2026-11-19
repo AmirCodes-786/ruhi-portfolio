@@ -22,16 +22,16 @@ const Skills = () => {
         <div className="mt-8 border-t border-[var(--line)] lg:mt-12">
           {groups.map(([number, title, items], index) => (
             <motion.div key={title} initial={{ opacity: 0, x: -25 }} animate={visible ? { opacity: 1, x: 0 } : {}} transition={{ delay: index * .08 }} className="group grid gap-5 border-b border-[var(--line)] py-8 md:grid-cols-[80px_260px_1fr] md:items-center lg:py-10">
-              <span className="text-xs font-bold opacity-40">/{number}</span>
+              <span className="text-xs font-bold text-[var(--ink)] opacity-80">/{number}</span>
               <h3 className="text-3xl font-bold tracking-tight transition-transform duration-500 group-hover:translate-x-3 lg:text-5xl">{title}</h3>
-              <p className="max-w-xl text-base leading-relaxed text-[var(--ink)] opacity-75 lg:justify-self-end">{items}</p>
+              <p className="max-w-xl text-base leading-relaxed text-[var(--ink)] opacity-90 lg:justify-self-end">{items}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="mt-10 grid gap-3 md:grid-cols-3">
           {[['AI / APIs', 'Google Gemini, Groq, Puter.js, OpenRouter, Pollinations.ai, Wandbox'], ['Databases', 'MongoDB Atlas, PostgreSQL, pgvector, Prisma, Mongoose'], ['Delivery', 'Git, GitHub, Docker, Vercel, Render, VS Code']].map(([title, copy]) => (
-            <div key={title} className="rounded-2xl border border-[var(--line)] p-5"><h3 className="text-sm font-bold uppercase tracking-[.12em] text-[var(--violet)]">{title}</h3><p className="mt-3 text-sm leading-6 text-[var(--ink)] opacity-75">{copy}</p></div>
+            <div key={title} className="rounded-2xl border border-[var(--line)] p-5"><h3 className="text-sm font-bold uppercase tracking-[.12em] text-[var(--violet)]">{title}</h3><p className="mt-3 text-sm leading-6 text-[var(--ink)] opacity-90">{copy}</p></div>
           ))}
         </div>
 
