@@ -5,6 +5,8 @@ export const useStore = create(
   persist(
     (set) => ({
       theme: 'dark',
+      activeSection: 'hero',
+      setActiveSection: (activeSection) => set({ activeSection }),
       setTheme: (theme) => set({ theme }),
       toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
       

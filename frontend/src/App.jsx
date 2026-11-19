@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useStore } from './store/store'
-import Lenis from 'lenis'
 import Hero from './sections/Hero'
 import Navigation from './components/Navigation'
 import Skills from './sections/Skills'
@@ -8,38 +8,11 @@ import Education from './sections/Education'
 import Experience from './sections/Experience'
 import Projects from './sections/Projects'
 import Contact from './sections/Contact'
-import FloatingDock from './components/FloatingDock'
-import ThemeToggle from './components/ThemeToggle'
+import About from './sections/About'
+import PremiumCursor from './components/PremiumCursor'
 
 function App() {
-  const lenisRef = useRef(null)
-  const { theme } = useStore()
-
-  useEffect(() => {
-    // Initialize Lenis smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-    })
-
-    lenisRef.current = lenis
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    return () => {
-      lenis.destroy()
-    }
-  }, [])
+  const { theme, activeSection } = useStore()
 
   useEffect(() => {
     // Apply theme to HTML element
@@ -53,19 +26,27 @@ function App() {
     }
   }, [theme])
 
+  const sections = { hero: <Hero />, about: <About />, skills: <Skills />, education: <Education />, experience: <Experience />, projects: <Projects />, contact: <Contact /> }
+
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div className="h-[100svh] overflow-hidden transition-colors duration-300">
+      <PremiumCursor />
+      <div className="premium-noise" />
       <Navigation />
-      <FloatingDock />
-      <ThemeToggle />
-      
-      <main className="relative">
-        <Hero />
-        <Skills />
-        <Education />
-        <Experience />
-        <Projects />
-        <Contact />
+
+      <main className="h-[100svh] pt-[76px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSection}
+            initial={{ opacity: 0, y: 18, scale: 0.995 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.995 }}
+            transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full overflow-hidden"
+          >
+            {sections[activeSection]}
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   )
