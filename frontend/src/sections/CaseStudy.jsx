@@ -57,9 +57,9 @@ const CaseStudy = () => {
               {project.techStack.map((tech) => <span key={tech} className="pill px-4 py-2 text-xs font-bold">{tech}</span>)}
             </div>
             {project.liveStatus === 'live' ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="mt-8 flex items-center justify-between rounded-full bg-[var(--lime)] px-6 py-4 text-sm font-bold text-black"><span>View live project</span><span>↗</span></a>
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="mt-8 flex items-center justify-between rounded-full bg-[var(--lime)] px-6 py-4 text-sm font-bold text-black shadow-[0_10px_30px_rgba(200,255,61,.16)]"><span>View live project</span><span>↗</span></a>
             ) : (
-              <a href="#development" className="mt-8 flex items-center justify-between rounded-full bg-[var(--lime)] px-6 py-4 text-sm font-bold text-black"><span>Live preview status</span><span>↗</span></a>
+              <a href="#development" className="mt-8 flex items-center justify-between rounded-full bg-[var(--lime)] px-6 py-4 text-sm font-bold text-black shadow-[0_10px_30px_rgba(200,255,61,.16)]"><span>Live preview status</span><span>↗</span></a>
             )}
             <a href="/Jagriti-Kushwaha-Resume.pdf" target="_blank" rel="noopener noreferrer" className="mt-3 flex items-center justify-between rounded-full border border-[var(--line)] px-6 py-4 text-sm font-bold"><span>View résumé</span><span>↗</span></a>
           </aside>
