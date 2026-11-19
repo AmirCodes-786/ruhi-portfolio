@@ -16,6 +16,8 @@ const Navigation = () => {
     setMenuOpen(false)
   }
 
+  if (activeSection === 'caseStudy') return null
+
   return (
     <header className="fixed left-0 top-0 z-50 w-full px-4 py-3 sm:px-6 lg:px-10">
       <nav className="mx-auto flex max-w-[1480px] items-center justify-between rounded-full border border-[var(--line)] bg-[var(--paper)]/85 px-3 py-2 backdrop-blur-xl sm:px-4">

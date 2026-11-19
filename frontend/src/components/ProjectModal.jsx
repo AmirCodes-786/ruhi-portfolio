@@ -1,9 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import DevelopmentOverlay from './DevelopmentOverlay'
 
 const ProjectModal = ({ project, onClose }) => {
   const [developmentOpen, setDevelopmentOpen] = useState(false)
+  const modalRef = useRef(null)
+
+  useEffect(() => {
+    if (!project) return undefined
+
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    if (modalRef.current) modalRef.current.scrollTop = 0
+
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [project])
+
   if (!project) return null
 
   return (
@@ -13,7 +27,7 @@ const ProjectModal = ({ project, onClose }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 p-3 backdrop-blur-md sm:p-6"
+        className="fixed inset-0 z-[70] bg-[var(--paper)]"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 24 }}
@@ -21,14 +35,14 @@ const ProjectModal = ({ project, onClose }) => {
           exit={{ opacity: 0, scale: 0.96, y: 24 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           onClick={(event) => event.stopPropagation()}
-          className="modal-scrollable relative max-h-[92svh] w-full max-w-5xl overflow-y-auto rounded-[2rem] border border-[var(--line)] bg-[var(--paper)] shadow-2xl"
+          className="modal-scrollable relative h-[100svh] w-full overflow-y-auto bg-[var(--paper)]"
         >
-          <div className="sticky top-0 z-20 flex items-center justify-between border-b border-[var(--line)] bg-[var(--paper)]/90 px-5 py-4 backdrop-blur-xl sm:px-8">
+          <div className="sticky top-0 z-20 flex items-center justify-between border-b border-[var(--line)] bg-[var(--paper)]/95 px-5 py-4 backdrop-blur-xl sm:px-8 lg:px-12">
             <div className="flex items-center gap-3"><span className="rounded-full bg-[var(--ink)] px-3 py-2 text-[9px] font-bold tracking-[.14em] text-[var(--paper)]">CASE STUDY / 0{project.id}</span><span className="hidden text-[10px] font-bold uppercase tracking-[.14em] text-[var(--ink)] opacity-80 sm:block">{project.year}</span></div>
             <button onClick={onClose} className="grid h-10 w-10 place-items-center rounded-full border border-[var(--line)] text-xl transition-transform hover:rotate-90" aria-label="Close case study">×</button>
           </div>
 
-          <div className="p-5 sm:p-8 lg:p-10">
+          <div className="mx-auto max-w-[1480px] p-5 sm:p-8 lg:px-12 lg:py-10">
             <div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr]">
               <div>
                 <p className="section-kicker mb-5">{project.category}</p>

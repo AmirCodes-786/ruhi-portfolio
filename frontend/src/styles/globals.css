@@ -425,9 +425,11 @@ html.light body {
   contain: layout paint;
 }
 
-.portfolio-section { scrollbar-width: thin; scrollbar-color: var(--lime) transparent; }
-.portfolio-section::-webkit-scrollbar { width: 6px; }
+.portfolio-section { scrollbar-width: none; -ms-overflow-style: none; }
+.portfolio-section::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .portfolio-section::-webkit-scrollbar-track { background: transparent; }
 .portfolio-section::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 999px; }
 body { overflow: hidden; }
+
+html, body, #root { overscroll-behavior: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; } }

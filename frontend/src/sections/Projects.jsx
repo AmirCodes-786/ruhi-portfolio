@@ -1,13 +1,13 @@
 ﻿import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import ProjectModal from '../components/ProjectModal'
+import { useStore } from '../store/store'
 import DevelopmentOverlay from '../components/DevelopmentOverlay'
 import { projects } from '../data/projects'
 
 const Projects = () => {
   const ref = useRef(null)
   const visible = useInView(ref, { once: true, margin: '-100px' })
-  const [selectedProject, setSelectedProject] = useState(null)
+  const openCaseStudy = useStore((state) => state.openCaseStudy)
   const [developmentProject, setDevelopmentProject] = useState(null)
 
   return (
@@ -29,19 +29,18 @@ const Projects = () => {
               <div className="px-3 pb-4 pt-6">
                 <h3 className="mb-4 text-2xl font-bold tracking-tight lg:text-3xl">{project.title}</h3>
                 <p className="mb-5 max-w-md text-sm leading-6 text-[var(--ink)] opacity-85">{project.description}</p>
-                <button onClick={(event) => { event.stopPropagation(); setSelectedProject(project) }} className="mb-4 flex w-full items-center justify-between rounded-full bg-[var(--violet)] px-5 py-3.5 text-xs font-bold text-white shadow-[0_10px_30px_rgba(116,103,240,.22)] transition-transform group-hover:translate-y-[-2px]"><span>Open full case study</span><span className="grid h-7 w-7 place-items-center rounded-full bg-white/15">↗</span></button>
-                <div className="mb-5 flex flex-wrap gap-2">{project.techStack.slice(0, 3).map((tech) => <span key={tech} className="pill px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em]">{tech}</span>)}</div>
+                <button onClick={(event) => { event.stopPropagation(); openCaseStudy(project.id) }} className="mb-4 flex items-center gap-3 text-xs font-bold text-[var(--violet)] transition-transform hover:translate-x-1"><span className="border-b border-[var(--violet)] pb-1">Open full case study</span><span className="text-base">↗</span></button>
+                <div className="mb-4 flex flex-wrap gap-2">{project.techStack.slice(0, 3).map((tech) => <span key={tech} className="pill px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em]">{tech}</span>)}</div>
                 {project.liveStatus === 'live' ? (
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()} className="flex w-full items-center justify-between rounded-full bg-[var(--lime)] px-5 py-3 text-xs font-bold text-black"><span>View live project</span><span>↗</span></a>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-4 py-2.5 text-xs font-bold text-[var(--ink)] transition-colors hover:border-[var(--lime)] hover:bg-[var(--lime)] hover:text-black"><span>View live project</span><span>↗</span></a>
                 ) : (
-                  <button onClick={(event) => { event.stopPropagation(); setDevelopmentProject(project) }} className="flex w-full items-center justify-between rounded-full bg-[var(--lime)] px-5 py-3 text-xs font-bold text-black"><span>Live preview</span><span>↗</span></button>
+                  <button onClick={(event) => { event.stopPropagation(); setDevelopmentProject(project) }} className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] px-4 py-2.5 text-xs font-bold text-[var(--ink)] transition-colors hover:border-[var(--lime)] hover:bg-[var(--lime)] hover:text-black"><span>Live preview</span><span>↗</span></button>
                 )}
               </div>
             </motion.article>
           ))}
         </div>
       </div>
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
       <DevelopmentOverlay project={developmentProject} open={Boolean(developmentProject)} onBack={() => setDevelopmentProject(null)} onClose={() => setDevelopmentProject(null)} />
     </section>
   )
