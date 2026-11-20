@@ -8,6 +8,7 @@ const Projects = () => {
   const ref = useRef(null)
   const visible = useInView(ref, { once: true, margin: '-100px' })
   const openCaseStudy = useStore((state) => state.openCaseStudy)
+  const openLiveProject = useStore((state) => state.openLiveProject)
   const [developmentProject, setDevelopmentProject] = useState(null)
 
   return (
@@ -20,7 +21,7 @@ const Projects = () => {
 
         <div className="grid gap-5 md:grid-cols-2">
           {projects.slice(0, 4).map((project, index) => (
-            <motion.article key={project.id} initial={{ opacity: 0, y: 40 }} animate={visible ? { opacity: 1, y: 0 } : {}} transition={{ delay: index * .08, duration: .7 }} className="group hover-lift border border-[var(--line)] bg-[var(--paper)] p-3 rounded-[1.5rem] hover:border-[var(--violet)]">
+            <motion.article key={project.id} initial={{ opacity: 0, y: 40, scale: .97 }} animate={visible ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ delay: index * .1, duration: .65, ease: [0.22,1,0.36,1] }} className="group hover-lift border border-[var(--line)] bg-[var(--paper)] p-3 rounded-[1.5rem] hover:border-[var(--violet)]">
               <div className="relative isolate flex aspect-[16/7] items-center justify-center overflow-hidden rounded-[1rem] bg-[#11120f] [filter:none]">
                 <div className="absolute inset-0 opacity-20 editorial-grid" />
                 <span className="relative block font-mono text-[clamp(1.8rem,4vw,3.5rem)] font-black tracking-[.08em] text-[#c8ff3d] [filter:none] [text-rendering:geometricPrecision] transition-transform duration-500 group-hover:scale-[1.03]">{project.thumbnail}</span>
@@ -32,7 +33,7 @@ const Projects = () => {
                 <button onClick={(event) => { event.stopPropagation(); openCaseStudy(project.id) }} className="mb-4 flex items-center gap-3 text-xs font-bold text-[var(--violet)] transition-transform hover:translate-x-1"><span className="border-b border-[var(--violet)] pb-1">Open full case study</span><span className="text-base">↗</span></button>
                 <div className="mb-4 flex flex-wrap gap-2">{project.techStack.slice(0, 3).map((tech) => <span key={tech} className="pill px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em]">{tech}</span>)}</div>
                 {project.liveStatus === 'live' ? (
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>View live project</span><span>↗</span></a>
+                  <button onClick={(event) => { event.stopPropagation(); openLiveProject(project) }} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>View live project</span><span>↗</span></button>
                 ) : (
                   <button onClick={(event) => { event.stopPropagation(); setDevelopmentProject(project) }} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>Live preview</span><span>↗</span></button>
                 )}

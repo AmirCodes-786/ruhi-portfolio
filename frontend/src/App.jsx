@@ -10,6 +10,7 @@ const Projects = lazy(() => import('./sections/Projects'))
 const Contact = lazy(() => import('./sections/Contact'))
 const About = lazy(() => import('./sections/About'))
 const CaseStudy = lazy(() => import('./sections/CaseStudy'))
+const LiveProject = lazy(() => import('./sections/LiveProject'))
 import PremiumCursor from './components/PremiumCursor'
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
     }
   }, [theme])
 
-  const sections = { hero: <Hero />, about: <About />, skills: <Skills />, education: <Education />, experience: <Experience />, projects: <Projects />, contact: <Contact />, caseStudy: <CaseStudy /> }
+  const sections = { hero: <Hero />, about: <About />, skills: <Skills />, education: <Education />, experience: <Experience />, projects: <Projects />, contact: <Contact />, caseStudy: <CaseStudy />, liveProject: <LiveProject /> }
 
   return (
     <div className="h-[100svh] overflow-hidden transition-colors duration-300">
