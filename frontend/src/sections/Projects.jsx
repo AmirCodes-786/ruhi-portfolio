@@ -1,15 +1,13 @@
-﻿import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useStore } from '../store/store'
-import DevelopmentOverlay from '../components/DevelopmentOverlay'
 import { projects } from '../data/projects'
 
 const Projects = () => {
   const ref = useRef(null)
   const visible = useInView(ref, { once: true, margin: '-100px' })
   const openCaseStudy = useStore((state) => state.openCaseStudy)
-  const openLiveProject = useStore((state) => state.openLiveProject)
-  const [developmentProject, setDevelopmentProject] = useState(null)
+  const openDevelopmentProject = useStore((state) => state.openDevelopmentProject)
 
   return (
     <section id="projects" ref={ref} className="portfolio-section h-full overflow-y-auto px-5 py-5 sm:px-8 lg:px-12">
@@ -33,16 +31,15 @@ const Projects = () => {
                 <button onClick={(event) => { event.stopPropagation(); openCaseStudy(project.id) }} className="mb-4 flex items-center gap-3 text-xs font-bold text-[var(--violet)] transition-transform hover:translate-x-1"><span className="border-b border-[var(--violet)] pb-1">Open full case study</span><span className="text-base">↗</span></button>
                 <div className="mb-4 flex flex-wrap gap-2">{project.techStack.slice(0, 3).map((tech) => <span key={tech} className="pill px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.08em]">{tech}</span>)}</div>
                 {project.liveStatus === 'live' ? (
-                  <button onClick={(event) => { event.stopPropagation(); openLiveProject(project) }} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>View live project</span><span>↗</span></button>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>View live project</span><span>↗</span></a>
                 ) : (
-                  <button onClick={(event) => { event.stopPropagation(); setDevelopmentProject(project) }} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>Live preview</span><span>↗</span></button>
+                  <button onClick={(event) => { event.stopPropagation(); openDevelopmentProject(project.id) }} className="inline-flex items-center gap-2 rounded-full bg-[var(--lime)] px-4 py-2.5 text-xs font-bold text-black shadow-[0_8px_24px_rgba(200,255,61,.12)] transition-transform hover:-translate-y-0.5"><span>Live preview</span><span>↗</span></button>
                 )}
               </div>
             </motion.article>
           ))}
         </div>
       </div>
-      <DevelopmentOverlay project={developmentProject} open={Boolean(developmentProject)} onBack={() => setDevelopmentProject(null)} onClose={() => setDevelopmentProject(null)} />
     </section>
   )
 }
